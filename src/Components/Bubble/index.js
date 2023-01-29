@@ -3,6 +3,7 @@ import '../sort.css';
 import { MdChangeCircle } from 'react-icons/md';
 
 export default () => {
+    let colors = ["#0E4779","#234A8F","#3B52A3","#5457B6","#6E5EC0","#876AC3","#9F75C4","#B681C2","#CC8DBF","#E09ABA","#F2A6B4","#FDB6AD","#FEC6A5","#FED69C","#FEE68F","#FEEF7F","#FDF772","#FDF066","#FDE95B","#FDE34F","#FDDD44","#FDD73A","#FDD230","#FDCB28","#FDC51F"]
     const [array, setArray] = useState(JSON.stringify([19,-2,12,23,34,0,-4,-4,-2,3,10,37,-39,20,1,-3,-4,-23,9,25,5,-9,0,17,-27]));
     const [min, setMin] = useState(null);
     const [max, setMax] = useState(null);
@@ -10,9 +11,10 @@ export default () => {
     const [size, setSize] = useState(0);
     const [divised, setDivised] = useState(0);
     const [unit, setUnit] = useState(0);
+    const [active, setActive] = useState(false);
 
     useEffect(() => {
-        sort(false);
+        sort(true);
     }, []);
 
     function sort(sort) {
@@ -20,6 +22,8 @@ export default () => {
         let listMin = list[0];
         let listMax = list[0];
         setSize(list.length);
+
+        let divs = document.querySelectorAll('.items div');
 
         for (let i = 0; i < list.length-1; i++) {
             if (list[i] < listMin) {
@@ -38,8 +42,9 @@ export default () => {
                     }
                 }
             }
-            
+            divs[24-i].style.backgroundColor = colors[24-i];
         }
+        divs[0].style.backgroundColor = colors[0];
         
         setMin(listMin);
         setMax(listMax);
@@ -62,7 +67,7 @@ export default () => {
 
 
     function changeNums() {
-        
+        setActive(!active);
     }
 
     function changeArray(item,index) {
@@ -76,8 +81,7 @@ export default () => {
             <div className="container">
                 <div className="name" data-color="red">Bubble</div>
                 <button className='change' onClick={changeNums}><MdChangeCircle className='cg' /></button>
-                <div className="changeData">
-                    <label>Novos Valores</label>
+                <div className={active ? "changeData active" : "changeData"}>
                     <div className='newValues'>
                         {JSON.parse(array).map((item,index) => {
                             return(
@@ -96,8 +100,8 @@ export default () => {
                     <div className='items'>
                             {JSON.parse(array).map((item,index) => {
                                 return(
-                                    <div className='item' style={{"width": `${100 / size}%`,"backgroundColor": "yellow","position": "absolute","top": `${item >= 0 ? `${divised-item*unit}%` : `calc(${divised}% + 4px)`}`,"left": `${index * (100 / size)}%`,"height": `${item > 0 ? `${item*unit}%` : `${item === 0 ? "4px" : `${-1*item*unit}%`}`}`,"border": "1px solid #000"}}>
-                                       {console.log(unit)}
+                                    <div className='item' style={{"width": `${100 / size}%`,"backgroundColor": "yellow","position": "absolute","top": `${item >= 0 ? `${divised-item*unit}%` : `calc(${divised}% + 4px)`}`,"left": `${index * (100 / size)}%`,"height": `${item === 0 ? "0px" : `${Math.abs(item)*unit}%`}`,"border": "1px solid #000"}} data-h={Math.abs(index)*unit}>
+                                       
                                     </div>
                                 )
                             })}

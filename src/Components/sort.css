@@ -27,7 +27,6 @@
     font-size: 20px;
     padding: 5px 10px;
     border-radius: 0 0 15px 0;
-    background-color: #121212;
 }
 
 .sort .name[data-color="red"] {
@@ -49,23 +48,20 @@
     padding: 0px 10px;
     font-size: 28px;
     border-radius: 0 0 0 15px;
-    background-color: #121212;
     z-index: 10;
     border: none;
+    background-color: transparent;
 }
 
-.sort .container .change .cg {
-    filter: invert(1);
-}
 
-.sort .container_items #line {
+#line , #line1{
     position: absolute;
     height: 4px;
     width: 100%;
     background-color: #000;
 }
 
-.sort .container_items #line .items {
+#line .items, #line1 .items {
     position: relative;
     top: 0;
     left: 0;
@@ -74,11 +70,11 @@
     background-color: red;
 }
 
-.sort .container_items #line.top {
+#line.top, #lin1.top {
     top: 0;
 }
 
-.sort .container_items #line.bottom {
+#line.bottom, #line1.bottom {
     bottom: 0;
 }
 
@@ -92,8 +88,8 @@
     left: 0;
     width: 0;
     height: 0;
-    z-index: -10;
-    background-color: rgb(0, 0, 0);
+    z-index: 10;
+    background-color: rgb(255, 255, 255);
     transition: ease-in-out 1s;
 }
 
@@ -104,7 +100,7 @@
 }
 
 .sort .changeData * {
-    transition: ease-in-out 2s;
+    transition: ease-in-out 1s;
     transform: translate(-300px,0);
     opacity: 0;
     display: none;
@@ -113,6 +109,7 @@
 
 .sort .changeData.active * {
     transform: translate(0,0);
+    display: flex;
     opacity: 1;
 }
 
@@ -150,6 +147,14 @@
     align-items: center;
 }
 
+.sort .item {
+    position: relative;
+    text-align: center;
+    font-size: 10px;
+    padding: 1px;
+}
+
+
 
 
 @media screen and (orientation: portrait) {
@@ -163,44 +168,3 @@
         height: 80%;
     }
 }
-
-/*
-#0E4779
-#234A8F
-#3B52A3
-#5457B6
-#6E5EC0
-#876AC3
-#9F75C4
-#B681C2
-#CC8DBF
-#E09ABA
-#F2A6B4
-#FDB6AD
-#FEC6A5
-#FED69C
-#FEE68F
-#FEEF7F
-#FDF772
-#FDF066
-#FDE95B
-#FDE34F
-#FDDD44
-#FDD73A
-#FDD230
-#FDCB28
-#FDC51F
-#FDC017
-#FDBB0F
-#FDB608
-#FDB101
-#FF6F61
-#FF7A7A
-#FF8E8E
-#FFA3A3
-#FFB7B7
-#FFCBCB
-#FFE0E0
-#FFF5F5
-#FFFFFF
-#FFFFFF*/
