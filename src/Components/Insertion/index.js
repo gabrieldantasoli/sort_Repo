@@ -22,7 +22,7 @@ export default () => {
         let listMax = list[0];
         setSize(list.length);
 
-        let divs = document.querySelectorAll('.items div');
+        let divs = document.querySelectorAll('.items2 div');
 
         for (let i = 0; i < list.length-1; i++) {
             if (list[i] < listMin) {
@@ -41,7 +41,7 @@ export default () => {
             setType("divised");
             let divised = (100 * listMax) / (Math.abs(listMin) + Math.abs(listMax));
             setDivised(divised);
-            document.getElementById("line").style.top = `${divised}%`;
+            document.getElementById("line2").style.top = `${divised}%`;
         }
 
         setUnit(100 / 80)
@@ -50,34 +50,24 @@ export default () => {
     }
 
     function sortTime(index,list) {
-        let divs = document.querySelectorAll(".items div");
+        let divs = document.querySelectorAll(".items2 div");
         let orded = true;
-        for (let a = 0; a < index; a++) {
-            setTimeout(function () {
-                setDivActive(a)
-                if (list[a] > list[a + 1]) {
-                    let aux = list[a];
-                    list[a] = list[a + 1];
-                    list[a + 1] = aux;
-                    orded = false;
-                }
-                setArray(JSON.stringify(list));
-            }, 300 * a);
-        }
-        setTimeout(() => {
-            divs[index].style.backgroundColor = colors[index]
-            if (!orded) sortTime(index-1,list)
-            if (orded) {
-                for (let i = 0; i < 25; i++) {
-                    divs[i].style.backgroundColor = colors[i]
-                }
-            }
-        },(index+1)*300)
-    }
 
-
-    function changeNums() {
-        setActive(!active);
+        for (let i = 1; i < 25; i++) { 
+            let j = i
+            setTimeout(function() {
+                while (j > 0 && list[j] < list[j-1]) {
+                    let aux = list[j];
+                    list[j] = list[j - 1];
+                    list[j - 1] = aux;
+                    j -= 1;
+                    setArray(JSON.stringify(list));
+                }
+                for (let a = 0; a <= i; a++) {
+                    divs[a].style.backgroundColor = colors[a];
+                }
+            }, 500 * i)
+        }	
     }
 
     function changeArray(item,index) {
@@ -88,18 +78,18 @@ export default () => {
     }
 
     return(
-        <div className="sort bubble" id='bubble'>
+        <div className="sort bubble" id='insertion'>
             <div className="container">
             <button onClick={() => sortTime(24,JSON.parse(array))}>sort</button>
-                <div className="name" data-color="red">Bubble</div>
+                <div className="name" data-color="yellow">Insertion</div>
                 
                 <div className="container_items">
-                    <div id='line' className={type === "bottom" ? "bottom" : (type === "top" ? "top" : "divised")}>
+                    <div id='line2' className={type === "bottom" ? "bottom" : (type === "top" ? "top" : "divised")}>
                         
                         
                     </div>
 
-                    <div className='items'>
+                    <div className='items2'>
                             {JSON.parse(array).map((item,index) => {
                                 return(
                                     <div className='item' style={{"width": `${100 / size}%`,"backgroundColor": `${divactive === index ? "red": "yellow"}`,"position": "absolute","top": `${item >= 0 ? `${divised-item*unit}%` : `calc(${divised}% + 4px)`}`,"left": `${index * (100 / size)}%`,"height": `${item === 0 ? "0px" : `${Math.abs(item)*unit}%`}`,"border": "1px solid #000"}} data-h={item}>
