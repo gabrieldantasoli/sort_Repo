@@ -13,3 +13,20 @@
   font-family: 'Roboto',sans-serif;
   color: #000;
 }
+
+.color {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.algoritms {
+  margin-top: 3.1em;
+  width: 100vw;
+  min-height: calc(100vh - 3.1em);
+}
+
+.sort {
+  width: 100%;
+  min-height: calc(100vh - 3.1em);
+}

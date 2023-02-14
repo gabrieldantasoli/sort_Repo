@@ -23,6 +23,7 @@
 .header .svg {
     font-size: 30px;
     margin-left: 5px;
+    filter: invert(1);
 }
 
 .header nav a {
