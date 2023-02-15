@@ -93,7 +93,7 @@ export default class Bubble extends React.Component {
 
     render() {
         return(
-            <div className='sort yellow' id='bubble'>
+            <div className='sort yellow' id='insertion'>
                 <h2 className='yellow'>Insertion Sort</h2>
                 <div className="sortContainer">
                     <button onClick={this.InsertionSort} className="buttonSort">{this.state.sorted ? "Sorted" : `${this.state.startSorting ? "Sorting..." : "Start Sorting"}`}</button>

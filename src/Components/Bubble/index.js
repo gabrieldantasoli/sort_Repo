@@ -14,6 +14,7 @@ export default class Bubble extends React.Component {
             current: 0,
             currentPlus: 1
         }
+        this.colors = ["#ff0000", "#ff1100", "#ff2200", "#ff3000", "#ff3300", "#ff4400", "#ff5500", "#ff6600", "#ff7700", "#ff8800", "#ff9900", "#ffaa00", "#ffaa00", "#ffbb00", "#ffcc00", "#ffdd00", "#ffee00", "#ffff00", "#eeff00", "#ddff00","#efff00", "#ccff00", "#bbff00", "#aaff00", "#99ff00", "#88ff00", "#77ff00", "#66ff00", "#55ff00", "#44ff00", "#33ff00", "#22ff00", "#11ff00", "#00ff00", "#00ff11", "#00ff22", "#00ff33", "#00ff33", "#00ff44", "#00ff55", "#00ff66", "#00ff77", "#00ff88", "#00ff99", "#00ffaa", "#00ffbb", "#00ffbd", "#00ffcc", "#00ffdd", "#00ffee", "#00ffff", "#00eeff", "#00ddff", "#00ccff", "#00bbff", "#00aaff", "#0099ff", "#0088ff", "#0077ff", "#0066ff", "#0055ff", "#0044ff","#0044ff", "#0033ff", "#0022ff", "#0011ff", "#0000ff","#0000ff", "#1100ff", "#2200ff", "#3300ff", "#4400ff", "#5500ff", "#6600ff", "#7700ff", "#8800ff","#8800ff", "#9900ff", "#aa00ff", "#bb00ff", "#cc00ff", "#dd00ff", "#ee00ff", "#ff00ff", "#ff00ee", "#ff00dd", "#ff00cc", "#ff00bb", "#ff00aa", "#ff0099","#ff0099", "#ff0088", "#ff0077", "#ff0066", "#ff0055", "#ff0044", "#ff0033", "#ff0022", "#ff0011", "#ff0000"];
         this.bubbleSort = this.bubbleSort.bind(this);
         this.setData = this.setData.bind(this);
         this.setArray = this.setArray.bind(this);
@@ -27,37 +28,44 @@ export default class Bubble extends React.Component {
             })
           );
       
-          let data = this.state.array;
-          let isSorted = false;
-          let iteration = 1;
-      
-          while (!isSorted) {
-            isSorted = true;
-            for (let i = 0; i < data.length - iteration; i++) {
-                if (data[i] > data[i + 1]) {
-                    let aux = data[i];
-                    data[i] = data[i + 1];
-                    data[i + 1] = aux;
-                    isSorted = false;
-                }
+        let data = this.state.array;
+        let isSorted = false;
+        let iteration = 1;
+    
+        while (!isSorted) {
+        isSorted = true;
+        for (let i = 0; i < data.length - iteration; i++) {
+            if (data[i] > data[i + 1]) {
+                let aux = data[i];
+                data[i] = data[i + 1];
+                data[i + 1] = aux;
+                isSorted = false;
             }
-      
             // Espera um tempo entre cada iteração
-            await new Promise(resolve => setTimeout(resolve, 150));
-      
+            await new Promise(resolve => setTimeout(resolve, 0.1));
             this.setArray(data);
-      
-            iteration++;
-          }
-      
-          this.setState(
+        }
+    
+        iteration++;
+        }
+
+        this.setColors();
+          
+        this.setState(
             () => ({
               sorted: true,
             })
           );
         }
-      }
-      
+    }
+
+    async setColors() {
+        let items = document.querySelectorAll("#bubble .item");
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.background = this.colors[i];
+            await new Promise(resolve => setTimeout(resolve, 10));
+        }
+    }
 
     setArray(data) {
         this.setState(
@@ -68,6 +76,10 @@ export default class Bubble extends React.Component {
     }
 
     setData() {
+        let items = document.querySelectorAll("#bubble .item");
+        for (let i = 0; i < items.length; i++) {
+            items[i].style.background = "#121212";
+        }
         this.setState(
             () => ({
                 sorted: false,
