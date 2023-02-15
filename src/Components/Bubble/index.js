@@ -63,7 +63,7 @@ export default class Bubble extends React.Component {
         let items = document.querySelectorAll("#bubble .item");
         for (let i = 0; i < items.length; i++) {
             items[i].style.background = this.colors[i];
-            await new Promise(resolve => setTimeout(resolve, 10));
+            await new Promise(resolve => setTimeout(resolve, 1));
         }
     }
 
