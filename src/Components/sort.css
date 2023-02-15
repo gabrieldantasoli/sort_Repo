@@ -42,7 +42,6 @@
     position: absolute;
     font-size: 1rem;
     padding: 0.1rem 0.3rem;
-    border: 2px solid var(--red);
     font-weight: bold;
     top: -1.65rem;
     left: -0.11rem;
@@ -60,4 +59,13 @@
 
 .sort.red .buttonSort {
     background-color: var(--red);
+    border: 2px solid var(--red);
+}
+.sort.green .buttonSort {
+    background-color: var(--green);
+    border: 2px solid var(--green);
+}
+.sort.yellow .buttonSort {
+    background-color: var(--yellow);
+    border: 2px solid var(--yellow);
 }

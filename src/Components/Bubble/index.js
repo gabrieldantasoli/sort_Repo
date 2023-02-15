@@ -43,7 +43,7 @@ export default class Bubble extends React.Component {
             }
       
             // Espera um tempo entre cada iteração
-            await new Promise(resolve => setTimeout(resolve, 100));
+            await new Promise(resolve => setTimeout(resolve, 150));
       
             this.setArray(data);
       

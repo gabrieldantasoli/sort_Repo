@@ -3,35 +3,112 @@ import React, { useEffect, useState } from 'react';
 //IMPORTANDO O CSS
 import '../sort.css'
 
-export default () => {
-    let [array, setArray] = useState([]);
 
-    useEffect(() => {
-        function setData() {
-            let aux = [];
-            for (let i = 0; i < 100; i++) {
-                let num = Math.floor(Math.random() * 100);
-                aux.push(num);
+export default class Bubble extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            array: [1,2],
+            sorted: false,
+            startSorting: false,
+            current: 0,
+            currentPlus: 1
+        }
+        this.InsertionSort = this.InsertionSort.bind(this);
+        this.setData = this.setData.bind(this);
+        this.setArray = this.setArray.bind(this);
+    }
+
+    async InsertionSort() {
+        if (!this.state.sorted && !this.state.startSorting) {
+          this.setState(
+            () => ({
+              startSorting: true,
+            })
+          );
+      
+          let data = this.state.array;
+          let isSorted = false;
+          let iteration = 1;
+      
+          while (!isSorted) {
+            isSorted = true;
+            for (let i = 0; i < data.length - iteration; i++) {
+                if (data[i] > data[i + 1]) {
+                    let aux = data[i];
+                    data[i] = data[i + 1];
+                    data[i + 1] = aux;
+                    isSorted = false;
+                }
             }
-            setArray(aux);
+      
+            // Espera um tempo entre cada iteração
+            await new Promise(resolve => setTimeout(resolve, 150));
+      
+            this.setArray(data);
+      
+            iteration++;
+          }
+      
+          this.setState(
+            () => ({
+              sorted: true,
+            })
+          );
+        }
+      }
+      
+
+    setArray(data) {
+        this.setState(
+            () => ({
+                array: data
+            })
+        )
+    }
+
+    setData() {
+        this.setState(
+            () => ({
+                sorted: false,
+                startSorting: false,
+            })
+        )
+        let data = [];
+        for (let i = 0; i < 100; i++) {
+            let num = Math.floor(Math.random() * 100);
+            data.push(num);
         }
 
-        setData();
-    },[]);
+        this.setState(
+            (state) => ({
+                array: data,
+            })
+        )
+    }
 
-    return (
-        <div className='sort yellow' id='insertion'>
-            <h2 className='yellow'>Insertion Sort</h2>
-            <div className="sortContainer">
-                {array.map((item,index) => {
-                    return(
-                        <div className='item' data-size={item} data-index={index} style={{"top": `${100 - item - 1}%`,"left": `${index}%`}}></div>
-                    )
-                })}
+    componentDidMount() {
+        this.setData();
+    }
+
+    render() {
+        return(
+            <div className='sort yellow' id='bubble'>
+                <h2 className='yellow'>Insertion Sort</h2>
+                <div className="sortContainer">
+                    <button onClick={this.InsertionSort} className="buttonSort">{this.state.sorted ? "Sorted" : `${this.state.startSorting ? "Sorting..." : "Start Sorting"}`}</button>
+                    {this.state.sorted ? <button onClick={this.setData} className="buttonSort um">Regenerate</button> : ""}
+
+                    {this.state.array.map((item,index) => {
+                        return(
+                            <div className='item' data-size={item} data-index={index} style={{"top": `${100 - item - 1}%`,"left": `${index}%`}}></div>
+                        )
+                    })}
+                </div>
+                <div className="sortInfo">
+                    <h3>Informações</h3>
+                </div>
             </div>
-            <div className="sortInfo">
-                <h3>Informações</h3>
-            </div>
-        </div>
-    )
+        )
+    }
 }
