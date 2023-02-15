@@ -3,7 +3,69 @@ import React, { useEffect, useState } from 'react';
 //IMPORTANDO O CSS
 import '../sort.css'
 
-export default () => {
+class Bubble extends React.Component {
+    constructor(props) {
+        super(props);
+        this.modelo = "HRV";
+        this.state = {
+            ligado: false,
+            velAtual: 0,
+        }
+        this.ld = this.mudar.bind(this);
+        this.acelerar = this.acelerar.bind(this);
+    }
+
+    mudar() {
+        //this.setState({ligado: !this.state.ligado})
+        this.setState(
+            (state) => ({
+                ligado: !state.ligado,
+            })
+        )
+    }
+
+    acelerar() {
+        this.setState(
+            (state,props) => ({
+                velAtual: state.ligado ? state.velAtual + props.fator : 0
+            })
+        )
+    }
+
+
+    componentDidMount() {
+        alert("Componente Montado")
+    }
+
+    componentDidUpdate() {
+        alert("Dados Atualisados")
+    }
+
+    // Parar de ser renderizado
+    componentWillUnmount() {
+        alert("Removido")
+    }
+
+
+    render() {
+        return(
+            <div>
+                <h1>Componente de classe</h1>
+                <p>{this.props.name}</p>
+                <p>{this.modelo}</p>
+                <p>{this.state.ligado ? "Ligado" : "Desligado"}</p>
+                <p>{this.state.velAtual}</p>
+                <button onClick={this.ld}>Mudar</button>
+                <button onClick={this.acelerar}>aclr</button>
+            </div>
+           
+        )
+    }
+}
+
+export default Bubble;
+
+/*export default () => {
 
     let [array , setArray] = useState([]);
     let [loaded , setloaded] = useState(false);
@@ -24,10 +86,8 @@ function bubble() {
             }
         }
     }
-
-        console.log(data);
-        
-        setArray(data);
+    setArray(data);
+    alert(data)
     }
 
     function setData() {
@@ -49,6 +109,7 @@ function bubble() {
 
     return (
         <div className='sort red' id='bubble'>
+            {array}
             <button onClick={bubble}>start</button>
             <h2 className='red'>Bubble Sort</h2>
             <div className="sortContainer">
@@ -63,4 +124,4 @@ function bubble() {
             </div>
         </div>
     )
-}
+}*/
