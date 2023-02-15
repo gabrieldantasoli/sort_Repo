@@ -40,11 +40,3 @@
 a[data-color="red"]:hover {
     color: var(--red)
 }
-
-a[data-color="green"]:hover {
-    color: var(--green)
-}
-
-a[data-color="yellow"]:hover {
-    color: var(--yellow)
-}

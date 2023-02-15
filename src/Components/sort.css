@@ -8,6 +8,10 @@
     padding: 1rem;
 }
 
+.sort h2 {
+    margin-bottom: 1.5rem;
+}
+
 .sort .sortContainer {
     position: relative;
     width: 100%;
@@ -32,4 +36,28 @@
     width: 1%;
     aspect-ratio: 1 / 1;
     background-color: #121212;
+}
+
+.sort .buttonSort {
+    position: absolute;
+    font-size: 1rem;
+    padding: 0.1rem 0.3rem;
+    border: 2px solid var(--red);
+    font-weight: bold;
+    top: -1.65rem;
+    left: -0.11rem;
+    border-radius: 10px 10px 0 0;
+}
+
+.sort .buttonSort.um {
+    background-color: aqua;
+    left: calc(100% - 5.85rem);
+}
+
+.sort .buttonSort:hover {
+    color: #fff;
+}
+
+.sort.red .buttonSort {
+    background-color: var(--red);
 }

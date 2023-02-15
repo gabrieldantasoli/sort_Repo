@@ -26,9 +26,7 @@ export default () => {
             </div>
 
             <nav>
-                <a href="#bubble" data-color="red">Bubble</a>
-                <a href="#selection" data-color="green">selection</a>
-                <a href="#insertion" data-color="yellow">Insertion</a>
+                <a href="https://github.com/gabrieldantasoli" target="_blank" data-color="red">My Github</a>
             </nav>
         </div>
     )

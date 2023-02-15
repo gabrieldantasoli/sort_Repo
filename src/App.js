@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Rotas />
       <div className='algoritms'>
-        <Bubble fator={10}/>
+        <Bubble/>
         <Selection />
         <Insertion />
       </div>
