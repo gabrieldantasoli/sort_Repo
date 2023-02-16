@@ -112,7 +112,30 @@ export default class Bubble extends React.Component {
                     })}
                 </div>
                 <div className="sortInfo">
-                    <h3>Informações</h3>
+                    <h3>Características</h3>
+                    <ul>
+                        <li><p><strong>Inserção em ordem: </strong>o Insertion Sort insere cada elemento da lista em sua posição correta em relação aos elementos que já foram ordenados.</p></li>
+                        <li><p><strong>Eficiente em pequenas listas: </strong>o Insertion Sort é um algoritmo de ordenação eficiente em pequenas listas, pois tem uma complexidade de tempo O(n^2), mas com uma constante menor do que o Bubble Sort e o Selection Sort.</p></li>
+                        <li><p><strong>Pode ser estável: </strong>o Insertion Sort pode ser implementado como um algoritmo de ordenação estável, o que significa que elementos iguais não são reorganizados durante a ordenação.</p></li>
+                        <li><p><strong>Pode ser adaptativo: </strong>o Insertion Sort pode ser implementado como um algoritmo de ordenação adaptativo, o que significa que ele pode ser interrompido se a lista estiver quase ordenada e continuar de onde parou, o que pode melhorar a eficiência.</p></li>
+                        <li><p><strong>Fácil de implementar: </strong>o Insertion Sort é um algoritmo de ordenação fácil de entender e implementar, o que o torna uma boa escolha para pequenas listas ou para fins educacionais.</p></li>
+                        <li><p><strong>Requer memória adicional mínima: </strong>o Insertion Sort requer apenas uma quantidade mínima de memória adicional, o que o torna uma boa escolha para ordenar listas de tamanho fixo ou com restrições de memória.</p></li>
+                    </ul>
+                </div>
+                <div className="code">
+                    <h3>Código (em JAVASCRIPT)</h3>
+                    <div className='sourceCode'>
+<pre>{`function insertionSort() {
+    for (let i = 1; i < array.length; i++) {
+        let j = i;
+
+        while (j > 0 && array[j] < array[j-1]) {
+            swap(array, j, j -1);
+            j -= 1;
+        }
+    }
+}`}</pre>
+                    </div>
                 </div>
             </div>
         )

@@ -1,0 +1,17 @@
+footer {
+    background-color: #121212;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+footer p {
+    color: #fff;
+}
+
+footer .react {
+    color: rgb(0, 128, 255);
+    font-weight: bold;
+} 

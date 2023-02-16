@@ -44,7 +44,7 @@ export default class Selection extends React.Component {
                       );
                 }
                 // Espera um tempo entre cada iteração
-                await new Promise(resolve => setTimeout(resolve, 1));
+                await new Promise(resolve => setTimeout(resolve, 0.1));
             }
 
             let aux = data[i];
@@ -125,7 +125,33 @@ export default class Selection extends React.Component {
                     })}
                 </div>
                 <div className="sortInfo">
-                    <h3>Informações</h3>
+                    <h3>Características</h3>
+                    <ul>
+                        <li><p><strong>Encontra o menor elemento repetidamente:</strong> o Selection Sort encontra repetidamente o menor elemento na lista e o coloca em sua posição correta.</p></li>
+                        <li><p><strong>Ineficiente em grandes listas: </strong>assim como o Bubble Sort, o Selection Sort é um algoritmo de ordenação ineficiente em grandes listas, pois também tem complexidade de tempo quadrática O(n^2).</p></li>
+                        <li><p><strong>Não otimizado: </strong>o Selection Sort não é otimizado, o que significa que ele executa o mesmo número de comparações independentemente da ordem inicial da lista.</p></li>
+                        <li><p><strong>Não é estável: </strong>o Selection Sort não é um algoritmo de ordenação estável, o que significa que elementos iguais podem ser reorganizados durante a ordenação.</p></li>
+                        <li><p><strong>Fácil de implementar: </strong>o Selection Sort é um algoritmo de ordenação fácil de entender e implementar, o que o torna uma boa escolha para pequenas listas ou para fins educacionais.</p></li>
+                        <li><p><strong>Requer memória adicional mínima: </strong>o Selection Sort requer apenas uma quantidade mínima de memória adicional, o que o torna uma boa escolha para ordenar listas de tamanho fixo ou com restrições de memória.</p></li>
+                    </ul>
+                </div>
+                <div className="code">
+                    <h3>Código (em JAVASCRIPT)</h3>
+                    <div className='sourceCode'>
+<pre>{`function selectionSort() {
+    for (let i = 0; i < array.length; i++) {
+        let menor = i;
+
+        for (let j = menor + 1; j < array.length; j++) {
+            if (array[j] < array[menor]) {
+                menor = j;
+            }
+        }
+
+        swap(array, i,menor);
+    }
+}`}</pre>
+                    </div>
                 </div>
             </div>
         )

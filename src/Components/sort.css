@@ -1,5 +1,5 @@
 .sort {
-    width: 90%;
+    width: 95%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,13 @@
 }
 
 .sort h2 {
+    font-size: 2rem;
     margin-bottom: 1.5rem;
+}
+
+.sort h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
 }
 
 .sort .sortContainer {
@@ -68,4 +74,52 @@
 .sort.yellow .buttonSort {
     background-color: var(--yellow);
     border: 2px solid var(--yellow);
+}
+
+.sort .code , .sort .sortInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sort .code .sourceCode *  {
+    color: #fff;
+}
+
+.sort .sourceCode {
+    width: 100%;
+    max-width: 400px;
+    background-color: #121212;
+    border-radius: 1rem;
+}
+
+.sort:nth-child(1) {
+    border-bottom: 2px solid var(--red);
+}
+
+.sort:nth-child(2) {
+    border-bottom: 2px solid var(--green);
+}
+
+.sort:nth-child(3) {
+    border-bottom: 2px solid var(--yellow);
+}
+
+.sort pre {
+    padding: 1rem;
+    overflow: scroll;
+}
+
+.sort .sortInfo {
+    width: 100%;
+    align-items: center;
+    max-width: 800px;
+    text-align: justify;
+    padding: 1rem;
+}
+
+.sort .sortInfo p {
+    margin-bottom: 0.5rem;
 }

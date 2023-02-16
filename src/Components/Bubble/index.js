@@ -118,7 +118,34 @@ export default class Bubble extends React.Component {
                     })}
                 </div>
                 <div className="sortInfo">
-                    <h3>Informações</h3>
+                    <h3>Características : </h3>
+                    <ul>
+                        <li><p><strong>Comparação de elementos adjacentes.</strong></p></li>
+                        <li><p><strong>Ineficiência em grandes listas:</strong> complexidade de tempo quadrática O(n^2).</p></li>
+                        <li><p><strong>Estável:</strong> o Bubble Sort é um algoritmo de ordenação estável, o que significa que elementos iguais não são reorganizados durante a ordenação.</p></li>
+                        <li><p><strong>Fácil de implementar:</strong> o Bubble Sort é um algoritmo de ordenação fácil de entender e implementar, o que o torna uma boa escolha para pequenas listas ou para fins educacionais.</p></li>
+                        <li> <p><strong>Otimização:</strong> O código abaixo é uma boa otimização do Bubble sort , pois reduz o número de iterações necessárias para ordenar a lista, pois se a lista já estiver ordenada, o algoritmo não precisa continuar iterando. Isso pode ser particularmente útil em casos em que a lista já está quase ordenada ou quando o tamanho da lista é muito grande, o que pode economizar tempo e tornar o algoritmo mais eficiente.</p></li>
+                        <li> <p><strong>Requer memória adicional mínima:</strong> o Bubble Sort requer apenas uma quantidade mínima de memória adicional, o que o torna uma boa escolha para ordenar listas de tamanho fixo ou com restrições de memória.</p></li>
+                    </ul>
+                </div>
+                <div className="code">
+                    <h3>Código (em JAVASCRIPT)</h3>
+                    <div className='sourceCode'>
+<pre>{`function bubbleSort() {
+    let isSorted = false;
+    let iteration = 0;
+
+    while (!isSorted) {
+        isSorted = true;
+        for (let i = 0; i < array.length - 1 - iteration; i++) {
+            if (array[i] > array[i+1]) {
+                swap(array, i, i+1);
+                isSorted = false;
+            }
+        }
+    }
+}`}</pre>
+                    </div>
                 </div>
             </div>
         )
