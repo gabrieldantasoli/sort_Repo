@@ -36,6 +36,9 @@
 .sort.yellow .sortContainer {
     border: 2px solid var(--yellow);
 }
+.sort.blue .sortContainer {
+    border: 2px solid var(--blue);
+}
 
 .sort .sortContainer .item {
     position: absolute;
@@ -75,6 +78,10 @@
     background-color: var(--yellow);
     border: 2px solid var(--yellow);
 }
+.sort.blue .buttonSort {
+    background-color: var(--blue);
+    border: 2px solid var(--blue);
+}
 
 .sort .code , .sort .sortInfo {
     width: 100%;
@@ -98,13 +105,14 @@
 .sort:nth-child(1) {
     border-bottom: 2px solid var(--red);
 }
-
 .sort:nth-child(2) {
     border-bottom: 2px solid var(--green);
 }
-
 .sort:nth-child(3) {
     border-bottom: 2px solid var(--yellow);
+}
+.sort:nth-child(4) {
+    border-bottom: 2px solid var(--blue);
 }
 
 .sort pre {

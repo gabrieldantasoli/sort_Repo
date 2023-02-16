@@ -1,6 +1,7 @@
 import './App.css';
 import Rotas from './Routes/AppRoutes';
 import Bubble from './Components/Bubble';
+import Merge from './Components/Merge';
 import Selection from './Components/Selection';
 import Insertion from './Components/Insertion';
 import { useState } from 'react';
@@ -19,6 +20,7 @@ function App() {
         <Bubble/>
         <Selection />
         <Insertion />
+        <Merge /> 
         <Footer />
       </div>
     </div>
