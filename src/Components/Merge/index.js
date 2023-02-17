@@ -28,7 +28,7 @@ export default class Merge extends React.Component {
                 startSorting: true,
             }));
             
-            this.mergeSort(0, this.state.array.length)
+            this.mergeSort(-1, this.state.array.length)
 
             this.setState(() => ({
                 sorted: true,
@@ -37,64 +37,78 @@ export default class Merge extends React.Component {
     }
       
     async mergeSort(left, right) {
-        let arr = this.state.array;
         if (left >= right) {
-          return arr;
+            return;
         }
-      
+        
         let mid = Math.floor((left + right) / 2);
-        await this.mergeSort(left, mid);
-        await this.mergeSort(mid + 1, right);
-      
+        this.mergeSort(left, mid);
+        this.mergeSort(mid + 1, right);
+        
         this.merge(left, mid, right);
-      }
+    }
       
-      merge(left, mid, right) {
-        let aux = [...this.state.array];
-      
+    merge(left, mid, right) {
+        let helper = new Array(this.state.array.length);
+        for (let i = left; i <= right; i++) {
+            helper[i] = this.state.array[i];
+        }
+        
         let i = left;
         let j = mid + 1;
         let k = left;
-      
+        
         while (i <= mid && j <= right) {
-          if (aux[i] <= aux[j]) {
-            this.setState(prevState => {
-              let array = [...prevState.array];
-              array[k] = aux[i];
-              return { array };
-            });
-            i++;
-          } else {
-            this.setState(prevState => {
-              let array = [...prevState.array];
-              array[k] = aux[j];
-              return { array };
-            });
-            j++;
-          }
-          k++;
+            
+            if (helper[i] <= helper[j]) {
+                let arr = this.state.array;
+                arr[k] = helper[i]
+                this.setState(
+                    () => ({
+                        array: arr
+                    })
+                )
+                i++;
+            } else {
+                let arr = this.state.array;
+                arr[k] = helper[j]
+                this.setState(
+                    () => ({
+                        array: arr
+                    })
+                )
+                j++;
+            }
+            k++;    
+            
         }
-      
+        
+        // se a metade inicial não foi toda consumida, faz o append.
         while (i <= mid) {
-          this.setState(prevState => {
-            let array = [...prevState.array];
-            array[k] = aux[i];
-            return { array };
-          });
-          i++;
-          k++;
+            let arr = this.state.array;
+            arr[k] = helper[i]
+            this.setState(
+                () => ({
+                    array: arr
+                })
+            )
+            i++;
+            k++;
         }
-      
+        
+        // se a metade final não foi toda consumida, faz o append.
         while (j <= right) {
-          this.setState(prevState => {
-            let array = [...prevState.array];
-            array[k] = aux[j];
-            return { array };
-          });
-          j++;
-          k++;
+            let arr = this.state.array;
+            arr[k] = helper[j]
+            this.setState(
+                () => ({
+                    array: arr
+                })
+            )
+            j++;
+            k++;
         }
-      }
+    }
       
       
     async setColors() {
