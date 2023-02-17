@@ -22,17 +22,29 @@ export default class Merge extends React.Component {
         this.setArray = this.setArray.bind(this);
     }
 
-    sort() {
+    async sort() {
         if (!this.state.sorted && !this.state.startSorting) {
             this.setState(() => ({
                 startSorting: true,
             }));
             
-            this.mergeSort(-1, this.state.array.length)
+            await this.mergeSort(-1, this.state.array.length-1)
+
+            if (this.state.array[this.state.array.length-2] > this.state.array[this.state.array.length-1]) {
+                let data = this.state.array;
+                let aux = data[data.length - 1];
+                data[data.length-1] = data[data.length-2];
+                data[data.length-2] = aux;
+                this.setState(() => ({
+                    array: data,
+                }));
+            }
 
             this.setState(() => ({
                 sorted: true,
             }));
+
+            this.setColors();
         }
     }
       
@@ -42,13 +54,15 @@ export default class Merge extends React.Component {
         }
         
         let mid = Math.floor((left + right) / 2);
-        this.mergeSort(left, mid);
-        this.mergeSort(mid + 1, right);
+        await this.mergeSort(left, mid);
+        await this.mergeSort(mid + 1, right);
         
-        this.merge(left, mid, right);
+        await this.merge(left, mid, right);
     }
       
-    merge(left, mid, right) {
+    async merge(left, mid, right) {
+
+        // transfere os elementos entre left e right para um array auxiliar.
         let helper = new Array(this.state.array.length);
         for (let i = left; i <= right; i++) {
             helper[i] = this.state.array[i];
@@ -68,6 +82,7 @@ export default class Merge extends React.Component {
                         array: arr
                     })
                 )
+                await new Promise(resolve => setTimeout(resolve, 1));
                 i++;
             } else {
                 let arr = this.state.array;
@@ -77,6 +92,7 @@ export default class Merge extends React.Component {
                         array: arr
                     })
                 )
+                await new Promise(resolve => setTimeout(resolve, 1));
                 j++;
             }
             k++;    
@@ -92,6 +108,7 @@ export default class Merge extends React.Component {
                     array: arr
                 })
             )
+            await new Promise(resolve => setTimeout(resolve, 1));
             i++;
             k++;
         }
@@ -105,6 +122,7 @@ export default class Merge extends React.Component {
                     array: arr
                 })
             )
+            await new Promise(resolve => setTimeout(resolve, 1));
             j++;
             k++;
         }
@@ -112,7 +130,7 @@ export default class Merge extends React.Component {
       
       
     async setColors() {
-        let items = document.querySelectorAll("#insertion .item");
+        let items = document.querySelectorAll("#merge .item");
         for (let i = 0; i < items.length; i++) {
             items[i].style.background = this.colors[i];
             await new Promise(resolve => setTimeout(resolve, 10));
@@ -128,7 +146,7 @@ export default class Merge extends React.Component {
     }
 
     setData() {
-        let items = document.querySelectorAll("#insertion .item");
+        let items = document.querySelectorAll("#merge .item");
         for (let i = 0; i < items.length; i++) {
             items[i].style.background = "#121212";
         }
@@ -157,7 +175,7 @@ export default class Merge extends React.Component {
 
     render() {
         return(
-            <div className='sort blue' id='insertion'>
+            <div className='sort blue' id='merge'>
                 <h2 className='blue'>Merge Sort</h2>
                 <div className="sortContainer">
                     <button onClick={this.sort} className="buttonSort">{this.state.sorted ? "Sorted" : `${this.state.startSorting ? "Sorting..." : "Start Sorting"}`}</button>

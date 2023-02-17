@@ -6,7 +6,7 @@ import './header.css';
 export default () => {
     const [sortIndex, setSortIndex] = useState(0);
 
-    let sorts = [["bubble","#F23030ed"],["selection","#267365"],["insertion","#F2CB05"]]
+    let sorts = [["bubble","#F23030ed"],["selection","#267365"],["insertion","#F2CB05"],["merge","#00a2ff"]]
 
     function changeSort() {
         if (sortIndex >= sorts.length -1) {
